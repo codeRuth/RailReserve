@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Railway Reservation</title>
+
+</head>
+
+<body >
+    {% raw %}
+  <section class="section" id="home">
+    <div class="container">
+      <h1 class="title">Railway Reservation System</h1>
+      <p class="subtitle">Reserving Train tickets at
+        <strong>ease</strong>!</p>
+      <p class="subtitle">Welcome
+        <strong>{{ getCookie('user') }}</strong>
+      </p>
+      <div class="columns" id="home">
+        
+
+        <div class="column is-one-quarter">
+          <aside class="menu">
+            <p class="menu-label">Search Trains</p>
+            <ul class="menu-list">
+              <div class="field">
+                <label class="label">Source</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="BLR" v-model="src">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Destination</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="GUL" v-model="dest">
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Date of Travel</label>
+                <input id="datepickerDemo" class="input" type="date" value="2018-05-25" v-model="date">
+              </div>
+              <button class="button is-primary is-fullwidth"  v-on:click="trains()">Search</button>
+            </ul>
+
+            </ul>
+            <p class="menu-label">Account</p>
+            <ul class="menu-list">
+              <li>
+                <a>Tickets</a>
+              </li>
+              <li v-on:click="setCookie('user', '', 7)">
+                <a>Logout</a>
+              </li>
+            </ul>
+          </aside>
+        </div>
+
+        <div class="column">
+          <table class="table is-fullwidth is-hoverable">
+            <thead>
+              <tr>
+                <th>Train No.</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Price</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="train in trains_data">
+                <th>{{ train[0] }}</th>
+                <td>{{ train[1] }}</td>
+                <td>{{ train[2] }}</td>
+                <td>{{ train[3] }}</td>
+                <td>
+                  <button class="button is-primary" v-on:click="reserve(getCookie('user'), train[0], date)">Reserve</button>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+
+
+        </div>
+
+      </div>
+    </div>
+    <div class="modal" v-bind:class="{ 'is-active': showModal }">
+      <div class="modal-background"></div>
+      <div class="modal-card">
+        <header class="modal-card-head">
+          <p class="modal-card-title">Reservation Details</p>
+          <button class="delete" aria-label="close" v-on:click="showModal = !showModal"></button>
+        </header>
+        <section class="modal-card-body">
+            <p><strong>Date   :</strong> {{ modalData.date }}</p>
+            <p><strong>Train  :</strong> {{ modalData.train }}</p>
+            <p><strong>Status :</strong> {{ modalData.status }}</p>
+        </section>
+        <footer class="modal-card-foot">
+          <button class="button is-success" v-on:click="showModal = !showModal">OK</button>
+          <button class="button" v-on:click="showModal = !showModal">Cancel</button>
+        </footer>
+      </div>
+    </div>
+    {% endraw %}
+  </section>
+</body>
+<link rel="stylesheet" href="../static/css/bulma.min.css">
+<script src="../static/js/bulma-calendar.min.js"></script>
+<link rel="stylesheet" href="../static/css/bulma-calendar.min.css">
+
+<script defer src="../static/js/all.js"></script>
+<script src="../static/js/vue.js"></script>
+<script src="../static/js/axios.min.js"></script>
+<script src="../static/js/script.js"></script>
+<link rel="stylesheet" href="../static/css/style.css">
+
+</html>

@@ -1,0 +1,16 @@
+1000|Bangalore|Mumbai|500|
+1001|Bangalore|Hyderabad|700|
+1002|Bangalore|Mumbai|800|
+1003|Bangalore|Mumbai|1200|
+1004|Bangalore|Hyderabad|900|
+1005|Bangalore|Hyderabad|400|
+1006|Mysore|Bangalore|200|
+1007|Mysore|Bangalore|500|
+1008|Mumbai|Bangalore|600|
+1009|Mumbai|Bangalore|800|
+1010|Hyderabad|Bangalore|650|
+1011|Bangalore|Delhi|1400|
+1012|Bangalore|Gulbarga|450|
+1013|Bnagalore|Gulbarga|550|
+1014|Gulbarga|Bangalore|450|
+1015|Gulbarga|Bangalore|600|

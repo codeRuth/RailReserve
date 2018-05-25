@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Railway Reservation</title>
+
+</head>
+
+<body>
+  <section class="section">
+    <div class="container">
+      <h1 class="title">Railway Reservation System</h1>
+      <p class="subtitle">Reserving Train tickets at
+      <strong>ease</strong>!</p>
+
+      <div class="columns" id="auth">
+
+        <div class="column is-two-fifths">
+          <p class="subtitle"><strong>Login</strong></p>
+          <div>
+            <div class="field">
+              <p class="control has-icons-left has-icons-right">
+                <input class="input" type="email" placeholder="Email" v-model='username'>
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+                <span class="icon is-small is-right">
+                  <i class="fas fa-check"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" type="password" placeholder="Password" v-model="password">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <button class="button is-success" v-on:click="login()">
+                  Login
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="column is-two-fifths">
+          <div>
+            <p class="subtitle"><strong>Register</strong></p>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                  <input class="input" type="email" placeholder="Email" v-model="user">
+                  <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                  </span>
+                  <span class="icon is-small is-right">
+                    <i class="fas fa-check"></i>
+                  </span>
+                </p>
+            </div>
+            <div class="field">
+              <p class="control has-icons-left">
+                <input class="input" type="password" placeholder="Password" v-model="pass">
+                <span class="icon is-small is-left">
+                  <i class="fas fa-lock"></i>
+                </span>
+              </p>
+            </div>
+            <div class="field">
+              <p class="control">
+                <button class="button is-success" v-on:click="register()">
+                  Register
+                </button>
+              </p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </section>
+</body>
+
+<link rel="stylesheet" href="../static/css/bulma.min.css">
+<script defer src="../static/js/all.js"></script>
+<script src="../static/js/vue.js"></script>
+<script src="../static/js/axios.min.js"></script>
+<script src="../static/js/script.js"></script>
+<link rel="stylesheet" href="../static/css/style.css">
+
+</html>

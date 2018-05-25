@@ -53,12 +53,14 @@ var home = new Vue({
     dest: '',
     date: '2018-05-25',
     trains_data: [],
+    ticket_data: [],
     showModal: false,
     modalData: {
       date: '',
       train: '',
       status: ''
-    }
+    },
+    ticketView: true
   },
   computed: {
     getUsername: function () {
@@ -123,6 +125,38 @@ var home = new Vue({
     logout() {
       setCookie('user', '', 7)
       window.location = '/'
+    },
+    view: function (user, train, date) {
+      var self = this
+      axios.post('/view', {
+          username: self.getCookie('user'),
+        })
+        .then(function (response) {
+          console.log(response.data)
+          self.ticket_data = response.data.res
+          //self.trains_data = response.data.res
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+    },
+    cancel:  function (user, train, date) {
+      var self = this
+      axios.post('/cancel', {
+          user: user,
+          pnr: pnr
+        })
+        .then(function (response) {
+          // self.showModal = true
+          // self.modalData.date = response.data.date
+          // self.modalData.train = response.data.train
+          // self.modalData.status = response.data.res
+          // console.log(response.data)
+          //self.trains_data = response.data.res
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   }
 })

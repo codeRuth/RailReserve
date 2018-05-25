@@ -79,6 +79,7 @@ def reserve():
   ff.write(date)
   ff.write('|')
   ff.write(pnr)
+  ff.write('\n')
   x = [[ username, pos]]
   y = [[ pnr, pos]]
   ff.close()
@@ -105,28 +106,27 @@ def reserve():
   fw1.close()         
   return json.dumps({ "res": "done", "date": date, "train": train })
 
-        
-
 @app.route("/view",methods=['POST','GET'])
 def view():
-        username = request.form['usrename']
-        fr = open("index.txt")
-        t = fr.read().split("\n")
-        x = list()
-        for i in t:
-            s = i.split('|')
-            x.append(s)
-        pos = list()
-        for i in x:
-            if i[0] == username :
-                pos.append(i[1])
-        fr.close()
-        fr = open("ticket.txt","r")
-        data= list()
-        for i in pos:
-            fr.seek(i,0)
-            data.append(fr.readline())
-        return json.dumps({"res":data})
+  data = json.loads(request.data)
+  username = data['username']
+  fr = open("index.txt")
+  t = fr.read().split("\n")
+  x = list()
+  for i in t:
+      s = i.split('|')
+      x.append(s)
+  pos = list()
+  for i in x:
+      if i[0] == username :
+          pos.append(i[1])
+  fr.close()
+  fr = open("ticket.txt","r")
+  data= list()
+  for i in pos:
+      fr.seek(int(i),0)
+      data.append(fr.readline())
+  return json.dumps({"res":data})
                 
 def binarySearch (arr, l, r, x):
     if r >= l:
@@ -139,7 +139,6 @@ def binarySearch (arr, l, r, x):
             return binarySearch(arr, mid+1, r, x)
     else:
         return -1            
-
 
 @app.route("/cancel",methods=['POST','GET'])
 def cancel():

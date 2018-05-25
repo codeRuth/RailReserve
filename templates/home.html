@@ -25,6 +25,9 @@
           <aside class="menu">
             <p class="menu-label">Search Trains</p>
             <ul class="menu-list">
+              <li v-on:click="ticketView = true">
+                  <a>Reserve your Trian</a>
+                </li>
               <div class="field">
                 <label class="label">Source</label>
                 <div class="control">
@@ -47,7 +50,7 @@
             </ul>
             <p class="menu-label">Account</p>
             <ul class="menu-list">
-              <li>
+              <li v-on:click="ticketView = false; view()">
                 <a>Tickets</a>
               </li>
               <li v-on:click="setCookie('user', '', 7)">
@@ -57,7 +60,7 @@
           </aside>
         </div>
 
-        <div class="column">
+        <div class="column" v-if="ticketView">
           <table class="table is-fullwidth is-hoverable">
             <thead>
               <tr>
@@ -83,6 +86,33 @@
           </table>
 
 
+        </div>
+
+        <div class="column" v-else>
+            <table class="table is-fullwidth is-hoverable">
+              <thead>
+                <tr>
+                  <th>PNR</th>
+                  <th>Train No.</th>
+                  <th>Date</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="ticket in ticket_data">
+                  <th>{{ ticket }}</th>
+                  <td>{{  }}</td>
+                  <td>{{  }}</td>
+                  <td>{{  }}</td>
+                  <td>
+                    <button class="button is-primary" v-on:click="reserve(getCookie('user'), train[0], date)">Cancel</button>
+                  </td>
+                </tr>
+  
+              </tbody>
+            </table>
+  
+  
         </div>
 
       </div>
